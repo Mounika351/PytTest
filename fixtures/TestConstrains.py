@@ -14,3 +14,7 @@ registration_from_data = {
 }
 
 user_email = 'prasanna.testingclub@gmail.com'
+
+name = 'mounika'
+message = 'hello'
+image_address = '//Users//ravimoni//Downloads//Siva.jpg'

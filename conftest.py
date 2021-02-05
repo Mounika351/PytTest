@@ -3,16 +3,17 @@ from datetime import datetime
 import pytest
 from BrowserFactory import BrowserFactory
 from pages.LoginPage import LoginPage
-import parser
 
 
 ROOT_DIR = os.path.dirname(os.path.realpath(__file__))
 
+
 def pytest_addoption(parser):
-  parser.addoption('--BROWSER', action='store', default='chrome')
-  parser.addoption('--BROWSER_MODE', action='store', default=None)
-  parser.addoption('--TEST_URL', action='store', default='http://practice.testingclub.in/')
-  parser.addoption('--EMAIL', action='store', required=True)
+    parser.addoption('--BROWSER', action='store', default='chrome')
+    parser.addoption('--BROWSER_MODE', action='store', default=None)
+    parser.addoption('--TEST_URL', action='store', default='http://practice.testingclub.in/')
+    parser.addoption('--EMAIL', action='store', required=True)
+
 
 '''
 session - per suite once
@@ -21,15 +22,16 @@ class - per class once
 method - per test cases
 '''
 
+
 @pytest.fixture(scope="session")
 def driver(pytestconfig):
-  browser_factory = BrowserFactory()
-  driver = browser_factory.get_browser(pytestconfig.getoption('BROWSER'),pytestconfig.getoption('BROWSER_MODE'))
-  driver.implicitly_wait(10)
-  driver.get(pytestconfig.getoption('TEST_URL'))
-  login = LoginPage(driver)
-  login.login_into_testing_club(pytestconfig.getoption('EMAIL'))
-  yield driver
+    browser_factory = BrowserFactory()
+    driver = browser_factory.get_browser(pytestconfig.getoption('BROWSER'), pytestconfig.getoption('BROWSER_MODE'))
+    driver.implicitly_wait(10)
+    driver.get(pytestconfig.getoption('TEST_URL'))
+    login = LoginPage(driver)
+    login.login_into_testing_club(pytestconfig.getoption('EMAIL'))
+    yield driver
 
 
 # Capture screenshot when a TC is failed
@@ -57,4 +59,3 @@ def pytest_runtest_makereport(item, call):
                            f'style="width:304px;height:228px;" onclick="window.open(this.src)" align="right"/></div>'
                     extra.append(pytest_html.extras.html(html))
         report.extra = extra
-

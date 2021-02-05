@@ -6,7 +6,7 @@ reg_form_link = (By.CSS_SELECTOR, '.fa-window-restore');
 reg_form_one_link = (By.CSS_SELECTOR, '[title="Go to Form 1"]')
 reg_form_two_link = (By.CSS_SELECTOR, '[title="Go to Form 2"]')
 
-# Form one ields
+# Form one fields
 emailInput = (By.CSS_SELECTOR,'#email')
 passwordInput = (By.CSS_SELECTOR, '[name="password"]')
 cnfPasswordInput = (By.CSS_SELECTOR, '[name="cnfpassword"]')
